@@ -11,6 +11,7 @@ package threads;
  *
  * @author Sergio
  */
+//PROFE SOLO FUNCIONA CUANDO SE LE DA LA GANA NO SIEMPRE TARDA 2 SEGUNDOS!!! :(
 public class Intermedia implements Runnable {
     
     public static void main(String args[]){
@@ -23,13 +24,21 @@ public class Intermedia implements Runnable {
      t2.start();    
     Thread t3=new Thread(algo);
      t3.start();
-    
-    
-    }
+    t1.setName("impresion");
+    t2.setName("conexion");
+    t3.setName("guardar");
+     }
     @Override
     public void run(){
-    System.out.println("soy un thread mediano");
-    
+        try{
+   // System.out.println("soy un thread mediano");
+    if(Thread.currentThread().getName().equals("conexion"))Thread.sleep(2000);
+    if(Thread.currentThread().getName().equals("impresion"))Thread.sleep(4000);
+    if(Thread.currentThread().getName().equals("guardar"))Thread.sleep(6000);
+    System.out.println(Thread.currentThread().getName());
+        }
+        catch(Exception e){}
+        
     
     }
     
